@@ -93,6 +93,7 @@ int main()
 	std::shared_ptr<LobbyState> ls = std::make_shared<LobbyState>();
 	std::shared_ptr<WorldComponent> wc = std::make_shared<WorldComponent>();
 	NETWORK.Initialise();
+	NETWORK.sendRecvUDPMessage("test");
 	GAMEMANAGER.Initialise();
 	GAMEMANAGER.addState("lobby", ls);
 	GAMEMANAGER.addState("game", wc);

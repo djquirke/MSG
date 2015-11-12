@@ -6,7 +6,7 @@ Button::~Button()
 }
 
 bool Button::Initialise(const std::string &norm_path, const std::string &hover_path,
-						const sf::Vector2<float> &pos)
+						const sf::Vector2f &pos)
 {
 	bool ret = true;
 
@@ -30,26 +30,26 @@ bool Button::Initialise(const std::string &norm_path, const std::string &hover_p
 	return ret;
 }
 
-void Button::Update(const sf::Mouse &mouse, const sf::RenderWindow &window)
+void Button::Update(const sf::RenderWindow &window)
 {
-	if (hasCollided(mouse, window))
+	if (hasCollided(window))
 		sprite_.setTexture(hover_texture_);
 	else
 		sprite_.setTexture(norm_texture_);
 }
 
-bool Button::hasCollided(const sf::Mouse &mouse, const sf::RenderWindow &window)
+bool Button::hasCollided(const sf::RenderWindow &window)
 {
 	bool ret = false;
-	sf::Vector2i mouse_pos = mouse.getPosition(window);
+	
 	sf::Vector2f btn_pos = sprite_.getPosition();
 	sf::FloatRect sprite_size = sprite_.getGlobalBounds();
 
-	if ((mouse_pos.x > btn_pos.x) && (mouse_pos.x < btn_pos.x + sprite_size.width) &&
+	/*if ((mouse_pos.x > btn_pos.x) && (mouse_pos.x < btn_pos.x + sprite_size.width) &&
 		(mouse_pos.y > btn_pos.y) && (mouse_pos.y < btn_pos.y + sprite_size.height))
 	{
 		ret = true;
-	}
+	}*/
 
 	return ret;
 }
