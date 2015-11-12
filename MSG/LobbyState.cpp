@@ -22,7 +22,7 @@ bool LobbyState::Initialise()
 void LobbyState::Update()
 {
 	sf::Mouse mouse = sf::Mouse();
-	btn_start_.Update(mouse);
+//	btn_start_.Update();
 }
 
 void LobbyState::Render(sf::RenderWindow &window)
