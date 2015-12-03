@@ -72,18 +72,24 @@ void MenuButtonStrip::checkKeyboardInput()
 	{
 		//next_key_pressed_ = true;
 		bool next_val = false;
-
-		for (auto &btn : vec_btn_)
+		std::vector<Button>::iterator old_btn;
+		//for (auto &btn : vec_btn_)
+		for (std::vector<Button>::iterator it = vec_btn_.begin(); it != vec_btn_.end(); it++)
 		{
 			if (next_val)
 			{
-				btn.setSelected(true);
+				if (std::distance(it, vec_btn_.end()) >= 1)
+				{
+					old_btn->setSelected(false);
+					it->setSelected(true);
+				}
 				break;
 			}
 
-			if (btn.IsSelected())
+			if (it->IsSelected())
 			{
-				btn.setSelected(false);
+				//it->setSelected(false);
+				old_btn = it;
 				next_val = true;
 			}
 		}
@@ -91,8 +97,8 @@ void MenuButtonStrip::checkKeyboardInput()
 	else if (KEYBOARD.onKeyDown(prev_key_))
 	{
 		bool prev_val = false;
-
-		std::vector<Button>::iterator prev_btn;
+		
+		std::vector<Button>::iterator prev_btn = vec_btn_.begin();
 
 		for (std::vector<Button>::iterator it = vec_btn_.begin(); it != vec_btn_.end(); it++)
 		{
@@ -107,7 +113,10 @@ void MenuButtonStrip::checkKeyboardInput()
 		}
 		if (prev_val)
 		{
-			prev_btn->setSelected(true);
+			if (prev_btn >= vec_btn_.begin())
+			{
+				prev_btn->setSelected(true);
+			}
 		}
 	}
 	else if (KEYBOARD.onKeyDown(sf::Keyboard::Return))

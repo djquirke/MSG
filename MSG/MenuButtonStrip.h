@@ -33,5 +33,7 @@ private:
 	sf::Keyboard::Key prev_key_;
 
 	void checkKeyboardInput();
+
+	std::vector<Button>::iterator nextIt(std::vector<Button>::iterator it);
 };
 
