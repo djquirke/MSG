@@ -40,6 +40,7 @@ void send_recv_msg(const std::string &msg, sf::UdpSocket *socket)
 #include "GameManager.h"
 #include "LobbyState.h"
 #include "Network.h"
+#include "KeyboardHandler.h"
 int main()
 {
 	/*NETWORK.Initialise();
@@ -78,17 +79,6 @@ int main()
 
 
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Mario Kart(ish)");
-	//sf::CircleShape shape(100.f);
-	//shape.setFillColor(sf::Color::Green);
-	
-	//create world component instance and initialise
-	/*WorldComponent world;
-	if (!world.Initialise())
-	{
-		OutputDebugString(L"World failed to initialise");
-		return 0;
-	}*/
-
 
 	std::shared_ptr<LobbyState> ls = std::make_shared<LobbyState>();
 	std::shared_ptr<WorldComponent> wc = std::make_shared<WorldComponent>();
@@ -123,5 +113,6 @@ int main()
 
 	delete &NETWORK;
 	delete &GAMEMANAGER;
+	delete &KEYBOARD;
 	return 0;
 }

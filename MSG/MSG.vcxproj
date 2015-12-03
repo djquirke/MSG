@@ -163,8 +163,10 @@
     <ClCompile Include="EntityPlayer.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="KeyboardHandler.cpp" />
     <ClCompile Include="LobbyState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuButtonStrip.cpp" />
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="WorldComponent.cpp" />
   </ItemGroup>
@@ -174,7 +176,9 @@
     <ClInclude Include="EntityPlayer.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="LobbyState.h" />
+    <ClInclude Include="MenuButtonStrip.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="WorldComponent.h" />
   </ItemGroup>
