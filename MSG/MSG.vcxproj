@@ -160,29 +160,43 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityButtonPreview.cpp" />
     <ClCompile Include="EntityPlayer.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="KeyboardHandler.cpp" />
     <ClCompile Include="LobbyState.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuButtonStrip.cpp" />
+    <ClCompile Include="MenuButtonStripPreview.cpp" />
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="WorldComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityButtonPreview.h" />
     <ClInclude Include="EntityPlayer.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="LobbyState.h" />
+    <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MenuButtonStrip.h" />
+    <ClInclude Include="MenuButtonStripPreview.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="WorldComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\quit_hover.bmp" />
+    <Image Include="Assets\quit_norm.bmp" />
+    <Image Include="Assets\settings_hover.bmp" />
+    <Image Include="Assets\settings_norm.bmp" />
+    <Image Include="Assets\shop_hover.bmp" />
+    <Image Include="Assets\shop_norm.bmp" />
+    <Image Include="Assets\join_game_hover.bmp" />
+    <Image Include="Assets\join_game_norm.bmp" />
     <Image Include="Assets\tile_map.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

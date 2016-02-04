@@ -1,20 +1,17 @@
 #pragma once
-
 #include "GameState.h"
-#include "MenuButtonStrip.h"
-#include <SFML\Graphics.hpp>
-
-class LobbyState : public GameState
+class LobbyState :
+	public GameState
 {
 public:
-	LobbyState() : btns_() {};
+	LobbyState();
 	~LobbyState();
 
-	virtual bool Initialise();
-	virtual void Update();
-	virtual void Render(sf::RenderWindow &window);
+	bool Initialise();
+	void Update();
+	void Render(sf::RenderWindow &window);
 
 private:
-	MenuButtonStrip btns_;
+
 };
 

@@ -31,12 +31,12 @@ void MenuButtonStrip::AddButton(Button &btn)
 }
 
 bool MenuButtonStrip::AddButton(const std::string &norm_path, const std::string &hover_path,
-								const sf::Vector2f &pos, bool selected)
+								const sf::Vector2f &pos, bool selected, std::string dest)
 {
 	bool ret = true;
 
 	Button temp = Button();
-	if (!temp.Initialise(norm_path, hover_path, pos, selected))
+	if (!temp.Initialise(norm_path, hover_path, pos, selected, dest))
 	{
 		OutputDebugString(L"Error initialising lobby");
 		ret = false;
@@ -70,10 +70,9 @@ void MenuButtonStrip::checkKeyboardInput()
 {
 	if (KEYBOARD.onKeyDown(next_key_))
 	{
-		//next_key_pressed_ = true;
 		bool next_val = false;
 		std::vector<Button>::iterator old_btn;
-		//for (auto &btn : vec_btn_)
+
 		for (std::vector<Button>::iterator it = vec_btn_.begin(); it != vec_btn_.end(); it++)
 		{
 			if (next_val)
@@ -88,7 +87,6 @@ void MenuButtonStrip::checkKeyboardInput()
 
 			if (it->IsSelected())
 			{
-				//it->setSelected(false);
 				old_btn = it;
 				next_val = true;
 			}
@@ -121,6 +119,20 @@ void MenuButtonStrip::checkKeyboardInput()
 	}
 	else if (KEYBOARD.onKeyDown(sf::Keyboard::Return))
 	{
-		GAMEMANAGER.setState("game");
+		for (auto &btn : vec_btn_)
+		{
+			if (btn.IsSelected())
+			{
+				std::string dest = btn.getDest();
+				if (dest == "quit")
+				{
+					GAMEMANAGER.Quit();
+				}
+				else
+				{
+					GAMEMANAGER.setState(btn.getDest());
+				}
+			}
+		}
 	}
 }

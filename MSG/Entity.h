@@ -7,7 +7,7 @@ public:
 	Entity();
 	~Entity();
 
-	bool Initialise(const std::string &sprite_path, bool alive = false);
+	virtual bool Initialise(const std::string &sprite_path, bool alive = false);
 	bool isAlive() { return isAlive_; }
 	void Render(sf::RenderWindow &window);
 	virtual void Update();

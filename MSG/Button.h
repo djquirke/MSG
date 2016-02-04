@@ -10,17 +10,20 @@ public:
 	~Button();
 
 	bool Initialise(const std::string &norm_path, const std::string &hover_path,
-					const sf::Vector2f &pos, bool selected);
+					const sf::Vector2f &pos, bool selected, std::string dest);
 	void Update();
 	void Render(sf::RenderWindow &window);
 
 	bool IsSelected() { return is_selected_; }
 	void setSelected(bool selected) { is_selected_ = selected; }
 
+	std::string getDest() { return dest_; }
+
 private:
 	sf::Texture norm_texture_;
 	sf::Texture hover_texture_;
 	sf::Sprite sprite_;
 	bool is_selected_;
+	std::string dest_;
 };
 

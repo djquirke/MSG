@@ -3,6 +3,7 @@
 #include "GameState.h"
 #include <map>
 #include <memory>
+#include <SFML/Graphics.hpp>
 
 #define GAMEMANAGER GameManager::getInstance()
 
@@ -12,10 +13,12 @@ public:
 	static GameManager& getInstance();
 	~GameManager();
 
-	void Initialise();
-	void Run(sf::RenderWindow &window);
+	void Initialise(int width, int height, std::string name);
+	void Run();
 	bool addState(const std::string &key, std::shared_ptr<GameState> state);
 	void setState(const std::string &state);
+
+	void Quit();
 
 private:
 	GameManager() {};
@@ -24,8 +27,10 @@ private:
 	void operator=(GameManager const&) = delete;
 
 	std::map<std::string, std::shared_ptr<GameState>> map_states_;
-	std::string active_state_;
+	std::shared_ptr<GameState> current_state_;
 
 	static GameManager *instance_;
+
+	sf::RenderWindow window_;
 };
 

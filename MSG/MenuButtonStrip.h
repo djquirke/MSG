@@ -17,9 +17,9 @@ public:
 
 	void Initialise(Alignment direction);
 
-	void AddButton(Button &btn);
-	bool AddButton(const std::string &norm_path, const std::string &hover_path,
-				   const sf::Vector2f &pos, bool selected);
+	virtual void AddButton(Button &btn);
+	virtual bool AddButton(const std::string &norm_path, const std::string &hover_path,
+						   const sf::Vector2f &pos, bool selected, std::string dest);
 	void Update();
 	void Render(sf::RenderWindow &window);
 
@@ -35,5 +35,8 @@ private:
 	void checkKeyboardInput();
 
 	std::vector<Button>::iterator nextIt(std::vector<Button>::iterator it);
+
+protected:
+	std::vector<Button> vec_btn_;
 };
 

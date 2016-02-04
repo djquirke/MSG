@@ -13,76 +13,127 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{5d83cf02-8c00-4dd6-95ac-dd36998dff99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{7817c7be-1260-4b93-8585-d9e84ef3b60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{0d078e04-6937-4bbf-88a1-ad46bf524fc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WorldComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Network.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LobbyState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="KeyboardHandler.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityPlayer.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldComponent.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Network.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
     <ClCompile Include="MenuButtonStrip.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButtonStripPreview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardHandler.cpp">
+    <ClCompile Include="EntityButtonPreview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WorldComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Network.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LobbyState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="KeyboardHandler.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityPlayer.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldComponent.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
     <ClInclude Include="MenuButtonStrip.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButtonStripPreview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardHandler.h">
+    <ClInclude Include="EntityButtonPreview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\tile_map.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\quit_hover.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\quit_norm.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\settings_hover.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\settings_norm.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\shop_hover.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\shop_norm.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\join_game_hover.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\join_game_norm.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

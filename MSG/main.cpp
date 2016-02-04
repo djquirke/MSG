@@ -1,8 +1,11 @@
-#include <SFML/Graphics.hpp>
 #include <SFML\Network.hpp>
 #include <Windows.h>
 #include "WorldComponent.h"
 #include <thread>
+#include "GameManager.h"
+#include "MainMenuState.h"
+#include "Network.h"
+#include "KeyboardHandler.h"
 
 #define HOST "localhost"
 #define PORT 9046
@@ -37,25 +40,9 @@ void send_recv_msg(const std::string &msg, sf::UdpSocket *socket)
 	send_msg(msg, socket);
 	recv_msg(socket);
 }
-#include "GameManager.h"
-#include "LobbyState.h"
-#include "Network.h"
-#include "KeyboardHandler.h"
+
 int main()
 {
-	/*NETWORK.Initialise();
-	NETWORK.sendRecvUDPMessage("bluh");
-	NETWORK.sendRecvUDPMessage("bluh2");
-	NETWORK.sendRecvUDPMessage("bluher");
-
-	NETWORK.printQueue();*/
-
-
-
-
-
-
-
 	/*sf::UdpSocket *socket = new sf::UdpSocket();
 	socket->bind(PORT);
 
@@ -67,49 +54,17 @@ int main()
 	thread1.join();*/
 
 
-	//socket.receive(buffer, sizeof(buffer), received, sIP, sPORT);
-	
-	//msg = std::string(buffer);
+	//sf::RenderWindow window(sf::VideoMode(800, 600), "Mario Kart(ish)");
 
-	//sf::Text message = sf::Text();
-	//message.setString(msg);
-	//message.setColor(sf::Color::Magenta);
-	//message.setPosition(100, 100);
-	//OutputDebugString(L"Reached this point");
-
-
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Mario Kart(ish)");
-
-	std::shared_ptr<LobbyState> ls = std::make_shared<LobbyState>();
+	std::shared_ptr<MainMenuState> mm = std::make_shared<MainMenuState>();
 	std::shared_ptr<WorldComponent> wc = std::make_shared<WorldComponent>();
 	NETWORK.Initialise();
 	NETWORK.sendRecvUDPMessage("test");
-	GAMEMANAGER.Initialise();
-	GAMEMANAGER.addState("lobby", ls);
+	GAMEMANAGER.Initialise(800, 600, "Mario Kart(ish)");
+	GAMEMANAGER.addState("main", mm);
 	GAMEMANAGER.addState("game", wc);
-	GAMEMANAGER.setState("lobby");
-
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-				
-		} 
-		
-
-		//world.Update();
-		window.clear();
-		GAMEMANAGER.Run(window);
-		//window.draw(message);
-		//world.Render(window);
-		window.display();
-	}
+	GAMEMANAGER.setState("main");
+	GAMEMANAGER.Run();
 
 	delete &NETWORK;
 	delete &GAMEMANAGER;

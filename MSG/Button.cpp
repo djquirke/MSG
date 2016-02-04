@@ -6,7 +6,7 @@ Button::~Button()
 }
 
 bool Button::Initialise(const std::string &norm_path, const std::string &hover_path,
-						const sf::Vector2f &pos, bool selected)
+						const sf::Vector2f &pos, bool selected, std::string dest)
 {
 	bool ret = true;
 
@@ -28,6 +28,7 @@ bool Button::Initialise(const std::string &norm_path, const std::string &hover_p
 
 	sprite_.setTexture(norm_texture_);
 	sprite_.setPosition(pos);
+	dest_ = dest;
 
 	return ret;
 }

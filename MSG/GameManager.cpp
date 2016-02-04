@@ -1,5 +1,5 @@
 #include "GameManager.h"
-#include "LobbyState.h"
+#include "MainMenuState.h"
 #include "WorldComponent.h"
 
 
@@ -17,17 +17,33 @@ GameManager::~GameManager()
 {
 }
 
-void GameManager::Initialise()
+void GameManager::Initialise(int width, int height, std::string name)
 {
+	window_.create(sf::VideoMode(width, height), name);
+
 	map_states_ = std::map<std::string, std::shared_ptr<GameState>>();
-	active_state_ = std::string();
+	current_state_ = std::make_shared<GameState>();
 }
 
-void GameManager::Run(sf::RenderWindow &window)
+void GameManager::Run()
 {
-	std::shared_ptr<GameState> current_state = map_states_[active_state_];
-	current_state->Update();
-	current_state->Render(window);
+	while (window_.isOpen())
+	{
+		sf::Event event;
+		while (window_.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window_.close();
+			}
+		}
+
+		window_.clear();
+		current_state_->Update();
+		current_state_->Render(window_);
+
+		window_.display();
+	}
 }
 
 bool GameManager::addState(const std::string &key, std::shared_ptr<GameState> state)
@@ -44,5 +60,10 @@ bool GameManager::addState(const std::string &key, std::shared_ptr<GameState> st
 
 void GameManager::setState(const std::string &state)
 {
-	active_state_ = state;
+	current_state_ = map_states_[state];
+}
+
+void GameManager::Quit()
+{
+	window_.close();
 }
