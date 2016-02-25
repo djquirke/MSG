@@ -12,7 +12,7 @@ LobbyState::~LobbyState()
 
 bool LobbyState::Initialise()
 {
-
+	return true;
 }
 
 void LobbyState::Update()

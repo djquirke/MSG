@@ -24,7 +24,6 @@ public:
 	void Render(sf::RenderWindow &window);
 
 private:
-	std::vector<Button> vec_btn_;
 	Alignment direction_;
 	bool next_key_pressed_;
 	bool prev_key_pressed_;
