@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include <Windows.h>
 
-Entity::Entity() : sprite_(), position_(), texture_(), isAlive_(false)
+Entity::Entity() : sprite_(), position_(), texture_(), isAlive_(false), prev_pos_()
 {
 }
 

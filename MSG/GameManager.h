@@ -18,6 +18,9 @@ public:
 	bool addState(const std::string &key, std::shared_ptr<GameState> state);
 	void setState(const std::string &state);
 
+	int getWidth() { return window_.getSize().x; }
+	int getHeight() { return window_.getSize().y; }
+
 	void Quit();
 
 private:

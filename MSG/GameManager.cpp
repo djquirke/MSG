@@ -60,7 +60,9 @@ bool GameManager::addState(const std::string &key, std::shared_ptr<GameState> st
 
 void GameManager::setState(const std::string &state)
 {
+	current_state_->setRunning(false);
 	current_state_ = map_states_[state];
+	current_state_->setRunning(true);
 }
 
 void GameManager::Quit()

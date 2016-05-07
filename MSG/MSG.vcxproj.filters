@@ -66,6 +66,12 @@
     <ClCompile Include="EntityButtonPreview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EntityCar.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityOpponent.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -106,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="EntityButtonPreview.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityCar.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityOpponent.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
