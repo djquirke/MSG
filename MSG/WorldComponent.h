@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <SFML\Graphics.hpp>
+#include "Camera.h"
 
 struct Lane
 {
@@ -30,16 +31,15 @@ public:
 
 	static bool ChangeLane(int lane, sf::Vector2f &pos, const int car_height);
 
-	static const float FPS;// = 60.0f;
-	static const float delta_time;// = 1 / FPS;//DeltaTime() { return delta_time; }
+	static const float FPS;
+	static const float delta_time;
 	static const int MAX_LANES = 4;
-	
+	static Camera cam_;
+
 private:
 	std::vector<std::shared_ptr<Entity>> entities_;
 	sf::Time last_tick_;
 	sf::Clock time;
 	static std::vector<Lane> lanes_;
-	//const float FPS = 60.0f;
-	//const float delta_time = 1 / FPS;
 };
 

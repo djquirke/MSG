@@ -10,13 +10,11 @@ public:
 
 	virtual void Update();
 	virtual void Render(sf::RenderWindow &window);
-	void setLane(int lane, sf::Vector2f &start_pos) { lane_ = lane; position_ = start_pos; }
+	void setLane(int lane) { lane_ = lane; }
+	void updatePos() { prev_pos_.y = position_.y; }
 
 private:
 	bool key_pressed_ = false;
 
 	void CheckKeyboardInput();
-
-	//DEBUG STUFF
-	//sf::Vertex line[];
 };

@@ -6,6 +6,7 @@
 const float WorldComponent::FPS = 60.0f;
 const float WorldComponent::delta_time = 1 / FPS;
 std::vector<Lane> WorldComponent::lanes_;
+Camera WorldComponent::cam_;
 
 WorldComponent::WorldComponent() : entities_(NULL), time()//, lanes_()
 {
@@ -20,8 +21,9 @@ bool WorldComponent::Initialise()
 	bool ret_val = true;
 	last_tick_ = time.getElapsedTime();
 
+	//Initialise player
 	std::shared_ptr<EntityPlayer> player = std::make_shared<EntityPlayer>();
-	if (!player->Initialise("Assets\\tile_map.bmp", true))
+	if (!player->Initialise("Assets\\Car.png", true))
 	{
 		OutputDebugString(L"Error initialising player entity\n");
 		ret_val = false;
@@ -48,8 +50,15 @@ bool WorldComponent::Initialise()
 		OutputDebugString(L"Error setting player lane\n");
 		ret_val = false;
 	}
-	//sf::Vector2f player_start_pos = lanes_[r].
-	//new_entity->setLane(r, )
+	else
+	{
+		player->updatePos();
+		player->setLane(r);
+	}
+
+	//initialise camera
+	cam_.Initialise(player->getPos(), GAMEMANAGER.getWidth(), GAMEMANAGER.getHeight(), 1000, GAMEMANAGER.getHeight());
+	cam_.setOffset(sf::Vector2f(0, 0));
 
 	return ret_val;
 }

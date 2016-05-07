@@ -60,7 +60,6 @@ void EntityPlayer::Update()
 {
 	CheckKeyboardInput();
 
-	//TODO: Maybe this can be stored as class variable? Direction vector will always be the same
 	sf::Vector2f dir_vector = sf::Vector2f();
 	dir_vector = position_ - prev_pos_; //direction vector
 	double dir_magnitude = sqrt((dir_vector.x * dir_vector.x) + (dir_vector.y * dir_vector.y));
@@ -79,33 +78,27 @@ void EntityPlayer::Update()
 		{
 			traction = sf::Vector2f(dir_unit_vector.x * engine_force_, dir_unit_vector.y * engine_force_);
 		}
-
 	}
 
 	double speed = sqrt((velocity_.x * velocity_.x) + (velocity_.y * velocity_.y));
 
+	//air resistance
 	sf::Vector2f drag = sf::Vector2f();
 	drag.x = -0.4257 * velocity_.x * speed;
 	drag.y = -0.4257 * velocity_.y * speed;
 
+	//tyre friction
 	sf::Vector2f roll_resistance = sf::Vector2f();
 	roll_resistance.x = -12.8 * velocity_.x;
 	roll_resistance.y = -12.8 * velocity_.y;
 
-	//prev_pos_ = position_;
-
+	//longitudinal force
 	sf::Vector2f long_force = traction + drag + roll_resistance;
 
 	sf::Vector2f acceleration = sf::Vector2f();
 
-	if (long_force.x != 0)
-	{
-		acceleration.x = long_force.x / 100;
-	}
-	if (long_force.y != 0)
-	{
-		acceleration.y = long_force.y / 100;
-	}
+	if (long_force.x != 0) acceleration.x = long_force.x / 100;
+	if (long_force.y != 0) acceleration.y = long_force.y / 100;
 
 	double x = WorldComponent::delta_time;
 
@@ -115,14 +108,20 @@ void EntityPlayer::Update()
 	if (velocity_.x < 0) velocity_.x = 0;
 	if (velocity_.y < 0) velocity_.y = 0;
 
-	position_.x = position_.x + (1 / 60.0f) * velocity_.x;
-	position_.y = position_.y + (1 / 60.0f) * velocity_.y;
+	position_.x = position_.x + (1 / 60.0f) * velocity_.x * 5;
+	position_.y = position_.y + (1 / 60.0f) * velocity_.y * 5;
 
 	sprite_.setPosition(position_);
+	WorldComponent::cam_.setCamera(position_);
 }
 
 void EntityPlayer::Render(sf::RenderWindow &window)
 {
-	window.draw(sprite_);
+	sf::Vector2f draw_pos = sf::Vector2f();
+	draw_pos.x = position_.x - WorldComponent::cam_.getPosition().x;
+	draw_pos.y = position_.y - WorldComponent::cam_.getPosition().y;
 
+	sprite_.setPosition(draw_pos);
+
+	window.draw(sprite_);
 }

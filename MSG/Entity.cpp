@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include <Windows.h>
+#include "WorldComponent.h"
 
 Entity::Entity() : sprite_(), position_(), texture_(), isAlive_(false), prev_pos_()
 {
@@ -28,6 +29,12 @@ bool Entity::Initialise(const std::string &sprite_path, bool alive)
 
 void Entity::Render(sf::RenderWindow &window)
 {
+	sf::Vector2f draw_pos = sf::Vector2f();
+	draw_pos.x = position_.x - WorldComponent::cam_.getPosition().x;
+	draw_pos.y = position_.y - WorldComponent::cam_.getPosition().y;
+
+	sprite_.setPosition(draw_pos);
+
 	window.draw(sprite_);
 }
 
