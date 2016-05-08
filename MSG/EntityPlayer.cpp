@@ -79,12 +79,9 @@ void EntityPlayer::CheckCollision(std::shared_ptr<Entity> other)
 	bool collided = false;
 	if (Intersects(other->getRect()))//.intersects(other->getRect(), getRect()))
 	{
-		//collide with oil tile
-		if (other->getTag() == "oil")
+		//collide with oil or speed tile
+		if (other->getTag() == "oil" || other->getTag() == "speed_boost")
 		{
-			sf::FloatRect fr = getRect();
-			sf::FloatRect fr2 = other->getRect();
-			//collided_this_frame_ = true;
 			collided = true;
 			std::shared_ptr<EntityFloorTile> temp = std::static_pointer_cast<EntityFloorTile>(other);
 			car_.setMultiplier(temp->getMultiplier());

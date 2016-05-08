@@ -44,6 +44,15 @@ bool WorldComponent::Initialise()
 	oil->setLane(2, lanes_[2]);
 	entities_.push_back(oil);
 
+	//Initialise speed ramps
+	std::shared_ptr<EntityFloorTile> speed_boost = std::make_shared<EntityFloorTile>();
+	speed_boost->Initialise("Assets\\Floor Tiles\\speed_ramp.png", true, true);
+	speed_boost->setTag("speed_boost");
+	speed_boost->setMultiplier(1.1f);
+	speed_boost->setPos(sf::Vector2f(1000, 0));
+	speed_boost->setLane(1, lanes_[1]);
+	entities_.push_back(speed_boost);
+
 	//Initialise player
 	std::shared_ptr<EntityPlayer> player = std::make_shared<EntityPlayer>();
 	if (!player->Initialise("Assets\\Cars\\Car.png", true))
