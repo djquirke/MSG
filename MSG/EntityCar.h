@@ -7,15 +7,20 @@ public:
 	EntityCar();
 	~EntityCar();
 
-	int getCarHeight() { return sprite_.getGlobalBounds().height; }
+	//calculates the new velocity
+	void Accelerate();
+	void Brake();
+	void resetForces() { engine_force_ = 0; braking_force_ = 0; }
+	sf::Vector2f getVelocity() { return velocity_; }
+	void UpdateForces(const sf::Vector2f &pos, const sf::Vector2f &prev_pos);
 
-protected:
+private:
 	float move_speed_ = 5000;
-	float brake_speed_ = 7000;
+	float brake_speed_ = 10000;
 	sf::Vector2f velocity_;
 	float engine_force_ = 0;
 	float braking_force_ = 0;
 	bool braking_ = false;
-	int lane_ = 0;
+	float mass = 300;
 };
 

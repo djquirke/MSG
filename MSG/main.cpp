@@ -53,14 +53,11 @@ int main()
 
 	thread1.join();*/
 
-
-	//sf::RenderWindow window(sf::VideoMode(800, 600), "Mario Kart(ish)");
-
 	std::shared_ptr<MainMenuState> mm = std::make_shared<MainMenuState>();
 	std::shared_ptr<WorldComponent> wc = std::make_shared<WorldComponent>();
 	NETWORK.Initialise();
 	NETWORK.sendRecvUDPMessage("test");
-	GAMEMANAGER.Initialise(800, 600, "Mario Kart(ish)");
+	GAMEMANAGER.Initialise(800, 600, "Drag Queen");
 	GAMEMANAGER.addState("main", mm);
 	GAMEMANAGER.addState("game", wc);
 	GAMEMANAGER.setState("main");

@@ -1,8 +1,9 @@
 #pragma once
+#include "Entity.h"
 #include "EntityCar.h"
 
 class EntityPlayer :
-	public EntityCar
+	public Entity
 {
 public:
 	EntityPlayer();
@@ -15,6 +16,8 @@ public:
 
 private:
 	bool key_pressed_ = false;
+	EntityCar car_;
+	int lane_ = 0;
 
 	void CheckKeyboardInput();
 };

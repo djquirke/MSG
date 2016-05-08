@@ -31,8 +31,7 @@ public:
 
 	static bool ChangeLane(int lane, sf::Vector2f &pos, const int car_height);
 
-	static const float FPS;
-	static const float delta_time;
+	static float DeltaTime() { return 1 / FPS; }
 	static const int MAX_LANES = 4;
 	static Camera cam_;
 
@@ -41,5 +40,6 @@ private:
 	sf::Time last_tick_;
 	sf::Clock time;
 	static std::vector<Lane> lanes_;
+	static const float FPS;
 };
 

@@ -1,14 +1,14 @@
 #include "WorldComponent.h"
 #include <Windows.h>
 #include "EntityPlayer.h"
+#include "EntityBackground.h"
 #include "GameManager.h"
 
 const float WorldComponent::FPS = 60.0f;
-const float WorldComponent::delta_time = 1 / FPS;
 std::vector<Lane> WorldComponent::lanes_;
 Camera WorldComponent::cam_;
 
-WorldComponent::WorldComponent() : entities_(NULL), time()//, lanes_()
+WorldComponent::WorldComponent() : entities_(NULL), time()
 {
 }
 
@@ -21,17 +21,20 @@ bool WorldComponent::Initialise()
 	bool ret_val = true;
 	last_tick_ = time.getElapsedTime();
 
+	//initialise background first so that it draws first
+	std::shared_ptr<EntityBackground> bg = std::make_shared<EntityBackground>();
+	bg->Initialise("Assets\\Maps\\map_01.jpg", true);
+	entities_.push_back(bg);
+
+
 	//Initialise player
 	std::shared_ptr<EntityPlayer> player = std::make_shared<EntityPlayer>();
-	if (!player->Initialise("Assets\\Car.png", true))
+	if (!player->Initialise("Assets\\Cars\\Car.png", true))
 	{
 		OutputDebugString(L"Error initialising player entity\n");
 		ret_val = false;
 	}
-	else
-	{
-		entities_.push_back(player);
-	}
+	else entities_.push_back(player);
 
 	//Initialise lanes
 	lanes_ = std::vector<Lane>();
@@ -45,7 +48,7 @@ bool WorldComponent::Initialise()
 	srand(time.getElapsedTime().asMilliseconds());
 
 	int r = rand() % MAX_LANES;
-	if (!ChangeLane(r, player->getPos(), player->getCarHeight()))
+	if (!ChangeLane(r, player->getPos(), player->getHeight()))
 	{
 		OutputDebugString(L"Error setting player lane\n");
 		ret_val = false;
@@ -57,7 +60,7 @@ bool WorldComponent::Initialise()
 	}
 
 	//initialise camera
-	cam_.Initialise(player->getPos(), GAMEMANAGER.getWidth(), GAMEMANAGER.getHeight(), 1000, GAMEMANAGER.getHeight());
+	cam_.Initialise(player->getPos(), GAMEMANAGER.getWidth(), GAMEMANAGER.getHeight(), bg->getWidth(), bg->getHeight());
 	cam_.setOffset(sf::Vector2f(0, 0));
 
 	return ret_val;

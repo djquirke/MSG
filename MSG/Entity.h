@@ -13,6 +13,8 @@ public:
 	virtual void Update();
 	void Destroy();
 	sf::Vector2f &getPos() { return position_; }
+	float getHeight() { return sprite_.getGlobalBounds().height; }
+	float getWidth() { return sprite_.getGlobalBounds().width; }
 
 protected:
 	bool isAlive_;
