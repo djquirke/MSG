@@ -73,3 +73,35 @@ void EntityPlayer::Render(sf::RenderWindow &window)
 
 	window.draw(sprite_);
 }
+#include "EntityFloorTile.h"
+void EntityPlayer::CheckCollision(std::shared_ptr<Entity> other)
+{
+	bool collided = false;
+	if (Intersects(other->getRect()))//.intersects(other->getRect(), getRect()))
+	{
+		//collide with oil tile
+		if (other->getTag() == "oil")
+		{
+			sf::FloatRect fr = getRect();
+			sf::FloatRect fr2 = other->getRect();
+			//collided_this_frame_ = true;
+			collided = true;
+			std::shared_ptr<EntityFloorTile> temp = std::static_pointer_cast<EntityFloorTile>(other);
+			car_.setMultiplier(temp->getMultiplier());
+		}
+	}
+
+	if (!collided)
+	{
+		car_.setMultiplier(1);
+	}
+}
+
+bool EntityPlayer::Intersects(const sf::FloatRect &other)
+{
+	sf::FloatRect player_rect = getRect();
+	return (player_rect.left <= other.width &&
+		player_rect.width >= other.left &&
+		player_rect.top <= other.height &&
+		player_rect.height >= other.top);
+}

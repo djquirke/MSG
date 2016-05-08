@@ -164,6 +164,7 @@
     <ClCompile Include="EntityBackground.cpp" />
     <ClCompile Include="EntityButtonPreview.cpp" />
     <ClCompile Include="EntityCar.cpp" />
+    <ClCompile Include="EntityFloorTile.cpp" />
     <ClCompile Include="EntityOpponent.cpp" />
     <ClCompile Include="EntityPlayer.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -184,16 +185,19 @@
     <ClInclude Include="EntityBackground.h" />
     <ClInclude Include="EntityButtonPreview.h" />
     <ClInclude Include="EntityCar.h" />
+    <ClInclude Include="EntityFloorTile.h" />
     <ClInclude Include="EntityOpponent.h" />
     <ClInclude Include="EntityPlayer.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="KeyboardHandler.h" />
+    <ClInclude Include="Lane.h" />
     <ClInclude Include="LobbyState.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MenuButtonStrip.h" />
     <ClInclude Include="MenuButtonStripPreview.h" />
     <ClInclude Include="Network.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="WorldComponent.h" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +210,9 @@
     <Image Include="Assets\join_game_hover.bmp" />
     <Image Include="Assets\join_game_norm.bmp" />
     <Image Include="Assets\tile_map.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MSG.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

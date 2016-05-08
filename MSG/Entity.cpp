@@ -11,10 +11,11 @@ Entity::~Entity()
 {
 }
 
-bool Entity::Initialise(const std::string &sprite_path, bool alive)
+bool Entity::Initialise(const std::string &sprite_path, bool alive, bool collidable)
 {
 	bool ret_val = true;
 	isAlive_ = alive;
+	isCollidable_ = collidable;
 
 	if (!texture_.loadFromFile(sprite_path))
 	{
@@ -46,4 +47,26 @@ void Entity::Update()
 void Entity::Destroy()
 {
 
+}
+
+void Entity::setLane(int num, const Lane &lane)
+{
+	position_.y = ((lane.width - sprite_.getGlobalBounds().height) / 2) + lane.pos.y;
+	prev_pos_.y = position_.y;
+	lane_ = num;
+}
+
+sf::FloatRect Entity::getRect()
+{
+	sf::FloatRect ret = sf::FloatRect();
+	ret.left = position_.x;
+	ret.top = position_.y;
+	ret.width = position_.x + getWidth();
+	ret.height = position_.y + getHeight();
+	//ret.left = sprite_.getGlobalBounds().left;
+	//ret.top = sprite_.getGlobalBounds().top;
+	//ret.width = sprite_.getGlobalBounds().left + sprite_.getGlobalBounds().width;
+	//ret.height = sprite_.getGlobalBounds().top + sprite_.getGlobalBounds().height;
+
+	return ret;
 }

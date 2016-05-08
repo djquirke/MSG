@@ -67,8 +67,12 @@ void EntityCar::UpdateForces(const sf::Vector2f &pos, const sf::Vector2f &prev_p
 	if (long_force.x != 0) acceleration.x = long_force.x / mass;
 	if (long_force.y != 0) acceleration.y = long_force.y / mass;
 
-	velocity_.x = velocity_.x + WorldComponent::DeltaTime() * acceleration.x;
-	velocity_.y = velocity_.y + WorldComponent::DeltaTime() * acceleration.y;
+	velocity_.x = velocity_.x * speed_multiplier_ + WorldComponent::DeltaTime() * acceleration.x;
+	velocity_.y = velocity_.y * speed_multiplier_ + WorldComponent::DeltaTime() * acceleration.y;
+	if (speed_multiplier_ < 1)
+	{
+		int x = 5;
+	}
 
 	if (velocity_.x < 0) velocity_.x = 0;
 	if (velocity_.y < 0) velocity_.y = 0;
