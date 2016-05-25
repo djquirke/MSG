@@ -12,7 +12,7 @@ namespace MSGServer
 
         static void Main(string[] args)
         {
-            AsynchronousUDPSocketListener.StartListening();
+            //AsynchronousUDPSocketListener.StartListening();
             AsynchronousTCPSocketListener.StartListening();
         }
     }

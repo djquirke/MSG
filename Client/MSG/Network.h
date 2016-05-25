@@ -7,7 +7,7 @@
 
 #define NETWORK Network::getInstance()
 
-#define HOST "255.255.255.255"
+#define HOST "192.168.0.4"
 #define PORT 9046
 #define SERVER_PORT 9045
 #define MAX_BUFFER_SIZE 1024

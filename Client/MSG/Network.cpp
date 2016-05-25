@@ -34,7 +34,7 @@ void Network::Initialise()
 {
 	msg_queue_ = std::queue<std::string>();
 	socket_ = new sf::UdpSocket();
-	socket_->bind(SERVER_PORT);
+	socket_->bind(PORT);
 	sendRecvUDPMessage("testing udp");
 
 	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
@@ -55,7 +55,7 @@ void Network::sendUDPMessage(std::string msg)
 
 	memset(buffer, 0, sizeof(buffer));
 	memcpy(buffer, msg.c_str(), msg.length());
-
+	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
 	socket_->send(buffer, msg.length(), HOST, SERVER_PORT);
 }
 

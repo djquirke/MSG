@@ -28,19 +28,19 @@ namespace MSGServer
                 while (true)
                 {
                     // Establish the local endpoint for the socket.
-            IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, Program.PORT);
+                    IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, Program.PORT);
             
-            // Create a UDP socket.
-            Socket listener = new Socket(AddressFamily.InterNetwork,
-                SocketType.Dgram, ProtocolType.Udp);
+                    // Create a UDP socket.
+                    Socket listener = new Socket(AddressFamily.InterNetwork,
+                    SocketType.Dgram, ProtocolType.Udp);
                     // Set the event to nonsignaled state.
-                listener.Bind(localEndPoint);
+                    listener.Bind(localEndPoint);
                     allDone.Reset();
 
                     // Start an asynchronous socket to listen for connections.
                     Console.WriteLine("Waiting for a UDP connection...");
 
-                    IPEndPoint sender = new IPEndPoint(IPAddress.Any, Program.PORT);
+                    IPEndPoint sender = new IPEndPoint(IPAddress.Any, 9046);
                     EndPoint tmpRemote = (EndPoint)sender;
 
                     int recv = listener.ReceiveFrom(bytes, ref tmpRemote);
