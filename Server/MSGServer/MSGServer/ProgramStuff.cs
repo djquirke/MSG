@@ -16,17 +16,17 @@ namespace MSGServer
         // Receive buffer.
         public byte[] buffer = new byte[BufferSize];
         // Received data string.
-        public StringBuilder sb = new StringBuilder();  
+        public StringBuilder sb = new StringBuilder();
+        public EndPoint ep;
     }
 
-    public class AsynchronousSocketListener
+    public class AsynchronousTCPSocketListener
     {
         // Thread signal.
         // TODO: Why do we need this?
         public static ManualResetEvent allDone = new ManualResetEvent(false);
-        public const int PORT = 9045;
 
-        public AsynchronousSocketListener()
+        public AsynchronousTCPSocketListener()
         {
         }
 
@@ -38,7 +38,7 @@ namespace MSGServer
             // Establish the local endpoint for the socket.
             IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
             IPAddress ipAddress = ipHostInfo.AddressList[2];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, PORT);
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, Program.PORT);
 
             // Create a TCP/IP socket.
             Socket listener = new Socket(ipAddress.AddressFamily,
@@ -109,7 +109,6 @@ namespace MSGServer
 
             if (bytesRead > 0)
             {
-                Console.WriteLine("Read {0}", bytesRead);
                 // There  might be more data, so store the data received so far.
                 state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
 
@@ -123,7 +122,7 @@ namespace MSGServer
                     Console.Write("Read {0} bytes from socket. \n Data : {1} \n",
                         content.Length, content);
                     // Echo the data back to the client.
-                    Send(handler, content);
+                    //Send(handler, content);
                     char [] delimiters = { ':' };
                     String[] parts = content.Split(delimiters);
                     if (parts[0].Equals("reg"))

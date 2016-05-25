@@ -32,12 +32,14 @@ void Network::cleanup()
 
 void Network::Initialise()
 {
-	//socket_ = new sf::UdpSocket();
-	//socket_->bind(PORT);
+	msg_queue_ = std::queue<std::string>();
+	socket_ = new sf::UdpSocket();
+	socket_->bind(SERVER_PORT);
+	sendRecvUDPMessage("testing udp");
+
 	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
 	
 	tcp_socket_.connect(ip, SERVER_PORT, sf::milliseconds(2000));
-	msg_queue_ = std::queue<std::string>();
 
 	//start threads
 	run_ = true;
@@ -45,8 +47,10 @@ void Network::Initialise()
 
 }
 
-void Network::sendUDPMessage(const std::string &msg)
+void Network::sendUDPMessage(std::string msg)
 {
+	msg += "\n";
+
 	char buffer[MAX_BUFFER_SIZE];
 
 	memset(buffer, 0, sizeof(buffer));
@@ -68,7 +72,7 @@ void Network::recvUDPMessage()
 	msg_queue_.push(std::string(buffer));
 }
 
-void Network::sendRecvUDPMessage(const std::string &msg)
+void Network::sendRecvUDPMessage(std::string msg)
 {
 	sendUDPMessage(msg);
 	recvUDPMessage();
@@ -76,10 +80,10 @@ void Network::sendRecvUDPMessage(const std::string &msg)
 
 void Network::sendTCPMessage(std::string msg)
 {
+	msg += "\n";
 	char buffer[MAX_BUFFER_SIZE];
 
 	memset(buffer, 0, sizeof(buffer));
-	msg += "\n";
 	memcpy(buffer, msg.c_str(), msg.length());
 
 	tcp_socket_.send(buffer, msg.length() + 1);

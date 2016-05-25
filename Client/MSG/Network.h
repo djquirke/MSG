@@ -7,7 +7,7 @@
 
 #define NETWORK Network::getInstance()
 
-#define HOST "localhost"
+#define HOST "255.255.255.255"
 #define PORT 9046
 #define SERVER_PORT 9045
 #define MAX_BUFFER_SIZE 1024
@@ -19,9 +19,9 @@ public:
 	~Network();
 
 	void Initialise();
-	void sendUDPMessage(const std::string &msg);
+	void sendUDPMessage(std::string msg);
 	void recvUDPMessage();
-	void sendRecvUDPMessage(const std::string &msg);
+	void sendRecvUDPMessage(std::string msg);
 
 	void sendTCPMessage(std::string msg);
 	void recvTCPMessage();

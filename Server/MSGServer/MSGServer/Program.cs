@@ -8,9 +8,12 @@ namespace MSGServer
 {
     class Program
     {
+        public static int PORT = 9045;
+
         static void Main(string[] args)
         {
-            AsynchronousSocketListener.StartListening();
+            AsynchronousUDPSocketListener.StartListening();
+            AsynchronousTCPSocketListener.StartListening();
         }
     }
 }
